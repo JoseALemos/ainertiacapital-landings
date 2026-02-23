@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Automatización para Restaurantes y Hoteles | Ainertia Capital</title>
+  <meta name="description" content="Confirma reservas automáticamente, elimina no-shows y consigue más reseñas en Google. Solución IA para restaurantes, bares y hoteles." />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue: #1a6fb5;
+      --blue-light: #e8f3fc;
+      --blue-mid: #2d88d4;
+      --teal: #0fa98e;
+      --teal-light: #e6f7f4;
+      --orange: #ea580c;
+      --orange-light: #fff7ed;
+      --dark: #1a2332;
+      --text: #2c3e50;
+      --muted: #6b7c93;
+      --border: #e2e8f0;
+      --bg: #f8fafc;
+      --white: #ffffff;
+      --radius: 14px;
+      --shadow-sm: 0 2px 12px rgba(0,0,0,0.06);
+      --shadow: 0 8px 32px rgba(0,0,0,0.10);
+    }
+
+    body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; color: var(--text); background: var(--white); line-height: 1.65; }
+
+    nav { background: var(--white); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; box-shadow: var(--shadow-sm); }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 1rem 2rem; max-width: 1200px; margin: 0 auto; width: 100%; }
+    .logo { font-weight: 800; font-size: 1.15rem; color: var(--dark); letter-spacing: -0.3px; }
+    .logo span { color: var(--teal); }
+    .nav-tagline { font-size: 0.78rem; color: var(--muted); margin-left: 0.5rem; }
+    .nav-back { font-size: 0.8rem; color: var(--muted); text-decoration: none; margin-right: auto; margin-left: 1.5rem; }
+    .nav-back:hover { color: var(--blue); }
+    .cta-nav { background: var(--blue); color: #fff; padding: 0.6rem 1.5rem; border-radius: 100px; text-decoration: none; font-weight: 700; font-size: 0.88rem; transition: background 0.2s; }
+    .cta-nav:hover { background: var(--blue-mid); }
+
+    .hero { background: linear-gradient(160deg, #fff7ed 0%, #e8f6f3 100%); padding: 5rem 2rem 4.5rem; text-align: center; border-bottom: 1px solid var(--border); }
+    .hero-inner { max-width: 1200px; margin: 0 auto; width: 100%; }
+    .hero-eyebrow { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--white); border: 1px solid var(--border); border-radius: 100px; padding: 0.35rem 1rem; font-size: 0.78rem; font-weight: 600; color: var(--orange); margin-bottom: 1.75rem; box-shadow: var(--shadow-sm); }
+    .hero-eyebrow::before { content: "🍽️"; font-size: 0.9rem; }
+    .hero h1 { font-size: clamp(1.9rem, 4.5vw, 3rem); font-weight: 900; line-height: 1.2; color: var(--dark); max-width: 780px; margin: 0 auto 1.25rem; letter-spacing: -0.5px; }
+    .hero h1 em { color: var(--blue); font-style: normal; }
+    .hero-sub { font-size: 1.1rem; color: var(--muted); max-width: 560px; margin: 0 auto 2.25rem; }
+    .hero-ctas { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 3rem; }
+    .btn-primary { background: var(--blue); color: #fff; padding: 0.95rem 2.2rem; border-radius: 100px; font-weight: 800; font-size: 1rem; text-decoration: none; border: none; cursor: pointer; transition: background 0.2s, transform 0.1s; display: inline-block; box-shadow: 0 4px 18px rgba(26,111,181,0.3); }
+    .btn-primary:hover { background: var(--blue-mid); transform: translateY(-1px); }
+    .btn-secondary { background: var(--white); color: var(--blue); padding: 0.95rem 2.2rem; border-radius: 100px; font-weight: 700; font-size: 1rem; text-decoration: none; border: 2px solid var(--blue); transition: all 0.2s; display: inline-block; }
+    .btn-secondary:hover { background: var(--blue-light); }
+    .hero-trust { display: flex; align-items: center; justify-content: center; gap: 2rem; flex-wrap: wrap; }
+    .trust-item { display: flex; align-items: center; gap: 0.4rem; font-size: 0.82rem; color: var(--muted); }
+    .trust-item strong { color: var(--dark); }
+    .trust-dot { width: 4px; height: 4px; background: var(--border); border-radius: 50%; }
+
+    .section { padding: 4.5rem 2rem; }
+    .section-inner { max-width: 1200px; margin: 0 auto; width: 100%; }
+    .section-center { text-align: center; }
+    .section-label { display: inline-block; color: var(--teal); font-weight: 700; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1.2px; margin-bottom: 0.75rem; }
+    .section-title { font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 800; color: var(--dark); line-height: 1.25; margin-bottom: 1rem; letter-spacing: -0.3px; }
+    .section-sub { font-size: 1.05rem; color: var(--muted); max-width: 580px; margin: 0 auto; }
+
+    .empathy { background: var(--white); border-top: 1px solid var(--border); }
+    .empathy-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5rem; margin-top: 2.5rem; }
+    .empathy-card { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; border-left: 4px solid var(--blue-light); transition: border-left-color 0.2s; }
+    .empathy-card:hover { border-left-color: var(--blue); }
+    .empathy-card .icon { font-size: 1.6rem; margin-bottom: 0.75rem; }
+    .empathy-card h3 { font-size: 0.95rem; font-weight: 700; color: var(--dark); margin-bottom: 0.5rem; }
+    .empathy-card p { font-size: 0.875rem; color: var(--muted); line-height: 1.6; }
+
+    .solution { background: var(--bg); }
+    .solution-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; margin-top: 2rem; }
+    .solution-visual { background: var(--white); border: 1px solid var(--border); border-radius: 20px; padding: 2rem; box-shadow: var(--shadow); }
+    .chat-bubble { background: var(--blue-light); border-radius: 14px 14px 14px 4px; padding: 0.875rem 1.1rem; margin-bottom: 0.75rem; font-size: 0.875rem; color: var(--text); max-width: 85%; }
+    .chat-bubble.bot { background: linear-gradient(135deg, var(--blue), var(--blue-mid)); color: #fff; border-radius: 14px 14px 4px 14px; margin-left: auto; }
+    .chat-meta { font-size: 0.72rem; color: var(--muted); margin-top: 0.2rem; }
+    .chat-meta.right { text-align: right; }
+    .solution-points { display: flex; flex-direction: column; gap: 1.25rem; }
+    .sol-point { display: flex; gap: 1rem; align-items: flex-start; }
+    .sol-icon { width: 44px; height: 44px; border-radius: 12px; background: var(--blue-light); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0; }
+    .sol-point h4 { font-size: 0.95rem; font-weight: 700; color: var(--dark); margin-bottom: 0.25rem; }
+    .sol-point p { font-size: 0.85rem; color: var(--muted); }
+
+    .results { background: linear-gradient(135deg, var(--dark) 0%, #1e3a5f 100%); color: #fff; }
+    .results .section-label { color: var(--teal); }
+    .results .section-title { color: #fff; }
+    .results .section-sub { color: rgba(255,255,255,0.65); }
+    .metrics-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 2.5rem; }
+    .metric-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius); padding: 2rem 1.5rem; text-align: center; }
+    .metric-number { font-size: 2.8rem; font-weight: 900; color: var(--teal); line-height: 1; margin-bottom: 0.5rem; }
+    .metric-label { font-size: 0.9rem; color: rgba(255,255,255,0.7); line-height: 1.4; }
+
+    .how { background: var(--white); }
+    .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 2.5rem; }
+    .step { text-align: center; padding: 1.5rem 1rem; }
+    .step-num { width: 48px; height: 48px; border-radius: 50%; background: var(--blue-light); color: var(--blue); font-weight: 900; font-size: 1.1rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; }
+    .step h3 { font-size: 0.9rem; font-weight: 700; color: var(--dark); margin-bottom: 0.4rem; }
+    .step p { font-size: 0.82rem; color: var(--muted); }
+
+    .testimonial { background: var(--bg); }
+    .testi-card { background: var(--white); border: 1px solid var(--border); border-radius: 20px; padding: 2.5rem; max-width: 680px; margin: 2rem auto 0; box-shadow: var(--shadow-sm); text-align: center; }
+    .testi-stars { color: #f5a623; font-size: 1.2rem; margin-bottom: 1.25rem; letter-spacing: 2px; }
+    .testi-quote { font-size: 1.1rem; line-height: 1.65; color: var(--text); font-style: italic; margin-bottom: 1.5rem; }
+    .testi-author { font-size: 0.875rem; font-weight: 700; color: var(--dark); }
+    .testi-role { font-size: 0.8rem; color: var(--muted); }
+
+    .cta-section { background: linear-gradient(135deg, #fff7ed 0%, #e8f6f3 100%); text-align: center; padding: 5rem 2rem; border-top: 1px solid var(--border); }
+    .cta-inner { max-width: 1200px; margin: 0 auto; width: 100%; }
+    .cta-section .section-title { max-width: 620px; margin: 0 auto 1rem; }
+    .cta-section .section-sub { margin-bottom: 2.5rem; }
+    .cta-form { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; max-width: 520px; margin: 0 auto; }
+    .cta-form input { flex: 1; min-width: 220px; padding: 0.9rem 1.25rem; border: 1.5px solid var(--border); border-radius: 100px; font-size: 0.95rem; color: var(--text); outline: none; transition: border-color 0.2s; }
+    .cta-form input:focus { border-color: var(--blue); }
+    .cta-note { font-size: 0.78rem; color: var(--muted); margin-top: 0.875rem; }
+    .cta-guarantee { display: inline-flex; align-items: center; gap: 0.4rem; background: var(--white); border: 1px solid var(--border); border-radius: 100px; padding: 0.4rem 1rem; font-size: 0.78rem; color: var(--muted); margin-top: 1.5rem; box-shadow: var(--shadow-sm); }
+
+    footer { background: var(--dark); color: rgba(255,255,255,0.5); padding: 2rem; text-align: center; font-size: 0.82rem; }
+    footer .footer-inner { max-width: 1200px; margin: 0 auto; }
+    footer a { color: rgba(255,255,255,0.6); text-decoration: none; }
+    footer a:hover { color: #fff; }
+
+    @media (min-width: 1280px) { .section { padding: 5.5rem 3rem; } .hero { padding: 6rem 3rem 5.5rem; } .hero h1 { font-size: 3.2rem; } .section-title { font-size: 2.4rem; } }
+    @media (min-width: 1600px) { .section { padding: 6rem 4rem; } .hero { padding: 7rem 4rem 6rem; } }
+    @media (max-width: 900px) { .empathy-grid { grid-template-columns: 1fr 1fr; } .metrics-grid { grid-template-columns: 1fr 1fr; } .steps { grid-template-columns: 1fr 1fr; } .solution-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 600px) { .empathy-grid { grid-template-columns: 1fr; } .metrics-grid { grid-template-columns: 1fr; } .steps { grid-template-columns: 1fr 1fr; gap: 1rem; } .hero { padding: 3.5rem 1.25rem 3rem; } .section { padding: 3rem 1.25rem; } .hero-trust { gap: 1rem; } .trust-dot { display: none; } .nav-tagline { display: none; } .nav-back { display: none; } .nav-inner { padding: 0.875rem 1.25rem; } }
+    @media (max-width: 400px) { .steps { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div style="display:flex;align-items:center;gap:.5rem">
+      <div class="logo"><a href="/" style="text-decoration:none;color:inherit">Ainertia<span>.</span></a></div>
+      <span class="nav-tagline">Soluciones IA para hostelería</span>
+    </div>
+    <a href="/" class="nav-back">← Todos los sectores</a>
+    <a href="#contacto" class="cta-nav">Solicitar demostración</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Asistente IA para restaurantes y hoteles</div>
+    <h1>Más mesas llenas.<br/>Menos <em>teléfono</em>.</h1>
+    <p class="hero-sub">
+      Confirmación automática de reservas, gestión de lista de espera y reseñas Google sin esfuerzo. Tu equipo de sala se centra en lo que importa: la experiencia.
+    </p>
+    <div class="hero-ctas">
+      <a href="#contacto" class="btn-primary">Ver cómo funciona →</a>
+      <a href="#resultados" class="btn-secondary">Ver resultados reales</a>
+    </div>
+    <div class="hero-trust">
+      <div class="trust-item">✅ <strong>Funciona con WhatsApp</strong></div>
+      <div class="trust-dot"></div>
+      <div class="trust-item">✅ <strong>Sin instalar nada</strong></div>
+      <div class="trust-dot"></div>
+      <div class="trust-item">✅ <strong>Instalación en 24h</strong></div>
+      <div class="trust-dot"></div>
+      <div class="trust-item">✅ <strong>Soporte en español</strong></div>
+    </div>
+  </div>
+</section>
+
+<section class="section empathy">
+  <div class="section-inner">
+    <div class="section-center">
+      <span class="section-label">Lo entendemos</span>
+      <h2 class="section-title">El servicio perfecto. Con mesas<br/>que se quedan vacías sin avisar.</h2>
+      <p class="section-sub">Tu cocina, tu equipo y tu producto son excelentes. Lo que duele es el no-show de las 21:00 del viernes que ya no puedes recuperar.</p>
+    </div>
+    <div class="empathy-grid">
+      <div class="empathy-card">
+        <div class="icon">🪑</div>
+        <h3>Mesas que desaparecen sin aviso</h3>
+        <p>Una reserva para 4 que no aparece son ingresos que no vuelven. Y sin aviso previo no puedes liberar la mesa ni llamar a alguien de la lista de espera.</p>
+      </div>
+      <div class="empathy-card">
+        <div class="icon">📞</div>
+        <h3>El teléfono no deja trabajar</h3>
+        <p>Reservas, cambios, preguntas sobre alergias, disponibilidad... tu equipo de sala dedica más tiempo al móvil que a los clientes que ya están dentro.</p>
+      </div>
+      <div class="empathy-card">
+        <div class="icon">🌟</div>
+        <h3>Buenas experiencias que no dejan huella</h3>
+        <p>El cliente sale encantado pero no deja reseña porque nadie se lo pidió en el momento adecuado. Un recordatorio simple en el instante justo cambia esa estadística.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section solution">
+  <div class="section-inner">
+    <div class="solution-grid">
+      <div class="solution-visual">
+        <div style="font-size:.72rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;margin-bottom:1rem">WhatsApp · Asistente de Restaurante</div>
+        <div class="chat-bubble">
+          Hola Carlos 👋 Tienes reserva <strong>mañana sábado a las 21:00</strong> para 4 personas en La Taberna del Sur. ¿Todo sigue bien?
+        </div>
+        <div class="chat-meta">Asistente · 18:00</div>
+        <div class="chat-bubble bot" style="margin-top:1rem">Confirmado ✅ Gracias</div>
+        <div class="chat-meta right">Carlos · 18:04</div>
+        <div class="chat-bubble" style="margin-top:1rem">¡Perfecto, os esperamos! Si necesitáis cambiar algo, escríbenos aquí mismo 😊</div>
+        <div class="chat-meta">Asistente · 18:04</div>
+        <div style="margin-top:1.5rem;padding-top:1.25rem;border-top:1px solid var(--border);font-size:.78rem;color:var(--muted);text-align:center">
+          Después de la cena…
+        </div>
+        <div class="chat-bubble" style="margin-top:1rem">
+          Carlos, ¿cómo fue la experiencia? Si os gustó, nos ayudaría mucho que lo contarais en Google 🙏
+        </div>
+        <div class="chat-meta">Asistente · 23:15</div>
+      </div>
+      <div>
+        <span class="section-label">La solución</span>
+        <h2 class="section-title" style="text-align:left">Tu sala siempre llena. Tu equipo, siempre libre.</h2>
+        <p style="color:var(--muted);margin-bottom:2rem;font-size:.95rem">Conectado a tu sistema de reservas. Gestiona confirmaciones, cancelaciones y reseñas sin que nadie tenga que levantar el teléfono.</p>
+        <div class="solution-points">
+          <div class="sol-point">
+            <div class="sol-icon">🗓️</div>
+            <div>
+              <h4>Confirmación automática de reservas</h4>
+              <p>WhatsApp 24h antes con un clic de confirmación o cancelación. Sin llamadas, sin olvidos.</p>
+            </div>
+          </div>
+          <div class="sol-point">
+            <div class="sol-icon">📋</div>
+            <div>
+              <h4>Gestión de lista de espera</h4>
+              <p>Si alguien cancela, se notifica automáticamente al siguiente de la lista. El hueco se rellena solo.</p>
+            </div>
+          </div>
+          <div class="sol-point">
+            <div class="sol-icon">⭐</div>
+            <div>
+              <h4>Solicitud de reseña post-visita</h4>
+              <p>Mensaje personalizado cuando el cliente todavía tiene fresco lo bien que lo ha pasado. El momento ideal.</p>
+            </div>
+          </div>
+          <div class="sol-point">
+            <div class="sol-icon">📊</div>
+            <div>
+              <h4>Panel de reservas en tiempo real</h4>
+              <p>Confirmaciones, bajas, lista de espera y no-shows en un solo vistazo. Sin papeles, sin Excel.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section results" id="resultados">
+  <div class="section-inner section-center">
+    <span class="section-label">Resultados reales</span>
+    <h2 class="section-title">Lo que cambia cuando no hay sorpresas</h2>
+    <p class="section-sub">Basados en restaurantes y hoteles que ya usan automatización por WhatsApp en España.</p>
+    <div class="metrics-grid">
+      <div class="metric-card">
+        <div class="metric-number">−50%</div>
+        <div class="metric-label">No-shows y cancelaciones de última hora sin aviso</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-number">4×</div>
+        <div class="metric-label">Más reseñas en Google cada mes desde el primer día</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-number">3h</div>
+        <div class="metric-label">Horas diarias liberadas en recepción y barra</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section how">
+  <div class="section-inner section-center">
+    <span class="section-label">Proceso</span>
+    <h2 class="section-title">Funcionando en 24 horas. Sin complicaciones.</h2>
+    <p class="section-sub">Sin cambiar tu sistema de reservas ni instalar nada nuevo. Se adapta a lo que ya tienes.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>Llamada de 30 min</h3>
+        <p>Entendemos tu sistema de reservas, horarios y cómo gestionas hoy las cancelaciones.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>Configuración</h3>
+        <p>Adaptamos mensajes, horarios de envío y flujos con la voz de tu establecimiento.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>Prueba real</h3>
+        <p>Lo probamos con reservas reales antes del lanzamiento. Sin riesgos, con ajustes.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <h3>En marcha</h3>
+        <p>Tu asistente ya gestiona solo. Tú ves el panel cuando quieres y nada más.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section testimonial">
+  <div class="section-inner section-center">
+    <span class="section-label">Experiencia de cliente</span>
+    <h2 class="section-title">Lo que dicen quienes ya lo usan</h2>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-quote">"Los viernes por la noche llegábamos con 3 o 4 mesas reservadas que no aparecían. Desde que activamos las confirmaciones automáticas, eso ha desaparecido casi por completo. Y las reseñas en Google se han triplicado en dos meses."</p>
+      <div class="testi-author">Restaurante El Bodegón de San Lorenzo</div>
+      <div class="testi-role">Sevilla · Restaurante familiar, 65 cubiertos</div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section" id="contacto">
+  <div class="cta-inner">
+    <span class="section-label">Sin compromiso</span>
+    <h2 class="section-title">¿Hablamos? Cuéntanos cómo gestionas hoy las reservas</h2>
+    <p class="section-sub">Una llamada de 20 minutos es suficiente para ver si tiene sentido para tu establecimiento. Sin presiones, sin letra pequeña.</p>
+    <form class="cta-form" action="https://formsubmit.co/comercial@ainertia.ai" method="POST">
+      <input type="hidden" name="_subject" value="Nuevo lead — Hostelería"/>
+      <input type="hidden" name="_captcha" value="false"/>
+      <input type="hidden" name="_next" value="https://ainertiacapital.com/hosteleria/?gracias=1"/>
+      <input type="text" name="nombre" placeholder="Tu nombre" required />
+      <input type="tel" name="telefono" placeholder="WhatsApp o teléfono" required />
+      <button type="submit" class="btn-primary">Quiero saberlo →</button>
+    </form>
+    <div style="display:flex;align-items:center;gap:1rem;justify-content:center;margin-top:1.25rem;flex-wrap:wrap">
+      <span style="font-size:.82rem;color:var(--muted)">o si lo prefieres</span>
+      <a href="https://wa.me/34613244738?text=Hola%2C%20me%20interesa%20saber%20c%C3%B3mo%20puede%20ayudar%20la%20automatizaci%C3%B3n%20a%20mi%20restaurante."
+         target="_blank"
+         style="display:inline-flex;align-items:center;gap:.5rem;background:#25d366;color:#fff;padding:.75rem 1.5rem;border-radius:100px;font-weight:700;font-size:.9rem;text-decoration:none;transition:background .2s"
+         onmouseover="this.style.background='#1ebe5d'" onmouseout="this.style.background='#25d366'">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Escríbenos por WhatsApp
+      </a>
+    </div>
+    <p class="cta-note" style="margin-top:1rem">O por email: <a href="mailto:comercial@ainertia.ai" style="color:var(--blue)">comercial@ainertia.ai</a></p>
+    <div class="cta-guarantee">🔒 Tus datos no se comparten con terceros. Solo te contactamos nosotros.</div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <p>© 2026 <a href="https://ainertia.ai">Ainertia Capital S.L.</a> · Córdoba, España · <a href="mailto:comercial@ainertia.ai">comercial@ainertia.ai</a></p>
+  </div>
+</footer>
+</body>
+</html>

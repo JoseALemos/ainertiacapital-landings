@@ -4,88 +4,123 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Ainertia Capital — Automatización con IA para empresas</title>
-  <meta name="description" content="Soluciones de automatización con inteligencia artificial para clínicas, gestorías, hostelería y más. Ainertia Capital."/>
+  <meta name="description" content="Soluciones de automatización con inteligencia artificial para clínicas dentales, gestorías, hostelería, estética, abogados y veterinarios. Ainertia Capital."/>
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     body{font-family:'Segoe UI',system-ui,sans-serif;background:#f8fafc;color:#2c3e50;min-height:100vh;display:flex;flex-direction:column}
-    nav{background:#fff;border-bottom:1px solid #e2e8f0;padding:1rem 2rem;display:flex;align-items:center;justify-content:space-between}
+
+    /* NAV */
+    nav{background:#fff;border-bottom:1px solid #e2e8f0;padding:0 2rem;height:60px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,0.06)}
     .logo{font-weight:800;font-size:1.1rem;color:#1a2332}.logo span{color:#0fa98e}
-    .hero{text-align:center;padding:5rem 2rem 4rem;background:linear-gradient(160deg,#f0f7ff 0%,#e8f6f3 100%)}
-    .hero h1{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;color:#1a2332;max-width:700px;margin:0 auto 1rem;line-height:1.2}
+    .nav-email{font-size:.85rem;color:#1a6fb5;text-decoration:none;font-weight:600}
+    .nav-email:hover{color:#2d88d4}
+
+    /* HERO */
+    .hero{text-align:center;padding:5rem 2rem 4rem;background:linear-gradient(160deg,#f0f7ff 0%,#e8f6f3 100%);border-bottom:1px solid #e2e8f0}
+    .hero-eyebrow{display:inline-block;background:#fff;border:1px solid #e2e8f0;border-radius:100px;padding:.35rem 1rem;font-size:.78rem;font-weight:600;color:#0fa98e;margin-bottom:1.5rem;box-shadow:0 2px 12px rgba(0,0,0,0.06)}
+    .hero h1{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;color:#1a2332;max-width:680px;margin:0 auto 1rem;line-height:1.2;letter-spacing:-.5px}
     .hero h1 em{color:#1a6fb5;font-style:normal}
-    .hero p{color:#6b7c93;font-size:1.05rem;max-width:520px;margin:0 auto 2.5rem}
-    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem;max-width:1100px;margin:0 auto;padding:3.5rem 2rem}
+    .hero p{color:#6b7c93;font-size:1.05rem;max-width:520px;margin:0 auto 2.5rem;line-height:1.65}
+    .hero-trust{display:flex;align-items:center;justify-content:center;gap:1.5rem;flex-wrap:wrap}
+    .trust-item{display:flex;align-items:center;gap:.4rem;font-size:.8rem;color:#6b7c93}
+    .trust-item strong{color:#1a2332}
+    .trust-dot{width:4px;height:4px;background:#e2e8f0;border-radius:50%}
+
+    /* GRID */
+    .grid-section{padding:3.5rem 2rem}
+    .grid-section-title{text-align:center;font-size:1rem;font-weight:700;color:#6b7c93;text-transform:uppercase;letter-spacing:1px;margin-bottom:2rem}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;max-width:1100px;margin:0 auto}
     .card{background:#fff;border:1px solid #e2e8f0;border-radius:16px;padding:2rem;text-decoration:none;color:inherit;transition:box-shadow .2s,transform .15s;display:flex;flex-direction:column;gap:.75rem}
-    .card:hover{box-shadow:0 8px 32px rgba(0,0,0,.10);transform:translateY(-2px)}
+    .card:hover{box-shadow:0 8px 32px rgba(0,0,0,.10);transform:translateY(-3px)}
     .card-icon{font-size:2rem}
     .card h2{font-size:1.1rem;font-weight:800;color:#1a2332}
     .card p{font-size:.875rem;color:#6b7c93;line-height:1.6;flex:1}
-    .card-cta{display:inline-block;margin-top:.5rem;font-size:.82rem;font-weight:700;color:#1a6fb5}
-    .soon{opacity:.55;cursor:default}
-    .soon:hover{box-shadow:none;transform:none}
-    .badge{display:inline-block;background:#fef9c3;color:#a16207;font-size:.68rem;font-weight:700;border-radius:100px;padding:.15rem .6rem;margin-left:.4rem}
-    footer{margin-top:auto;background:#1a2332;color:rgba(255,255,255,.45);text-align:center;padding:1.5rem;font-size:.8rem}
-    footer a{color:rgba(255,255,255,.55);text-decoration:none}
-    @media(max-width:600px){.hero{padding:3rem 1.25rem 2.5rem}.grid{padding:2rem 1.25rem}}
+    .card-cta{display:inline-flex;align-items:center;gap:.3rem;margin-top:.5rem;font-size:.82rem;font-weight:700;color:#1a6fb5;transition:gap .15s}
+    .card:hover .card-cta{gap:.6rem}
+
+    /* FOOTER */
+    footer{margin-top:auto;background:#1a2332;color:rgba(255,255,255,.45);text-align:center;padding:2rem;font-size:.8rem}
+    footer .footer-inner{max-width:1200px;margin:0 auto}
+    footer a{color:rgba(255,255,255,.6);text-decoration:none}
+    footer a:hover{color:#fff}
+
+    @media(max-width:600px){.hero{padding:3rem 1.25rem 2.5rem}.grid-section{padding:2rem 1.25rem}.hero-trust{gap:.75rem}.trust-dot{display:none}}
   </style>
 </head>
 <body>
 <nav>
   <div class="logo">Ainertia<span>.</span></div>
-  <a href="mailto:comercial@ainertia.ai" style="font-size:.85rem;color:#1a6fb5;text-decoration:none;font-weight:600">comercial@ainertia.ai</a>
+  <a href="mailto:comercial@ainertia.ai" class="nav-email">comercial@ainertia.ai</a>
 </nav>
 
 <section class="hero">
-  <h1>Automatización con <em>IA</em> para tu negocio</h1>
-  <p>Menos tareas repetitivas. Más tiempo para lo que importa. Elige tu sector y descubre cómo podemos ayudarte.</p>
+  <div class="hero-eyebrow">✦ Automatización con IA · Córdoba, España</div>
+  <h1>Más tiempo para lo que<br/><em>de verdad</em> importa.</h1>
+  <p>Automatizamos las tareas repetitivas de tu negocio con inteligencia artificial. Elige tu sector y descubre cómo podemos ayudarte.</p>
+  <div class="hero-trust">
+    <div class="trust-item">✅ <strong>Sin permanencia</strong></div>
+    <div class="trust-dot"></div>
+    <div class="trust-item">✅ <strong>Instalación en 24-48h</strong></div>
+    <div class="trust-dot"></div>
+    <div class="trust-item">✅ <strong>Soporte en español</strong></div>
+    <div class="trust-dot"></div>
+    <div class="trust-item">✅ <strong>Funciona con WhatsApp</strong></div>
+  </div>
 </section>
 
-<div class="grid">
-  <a href="/dental/" class="card">
-    <div class="card-icon">🦷</div>
-    <h2>Clínicas Dentales</h2>
-    <p>Recordatorios de cita automáticos por WhatsApp, confirmaciones, cancelaciones y reseñas Google sin esfuerzo.</p>
-    <span class="card-cta">Ver solución →</span>
-  </a>
+<div class="grid-section">
+  <p class="grid-section-title">Elige tu sector</p>
+  <div class="grid">
 
-  <div class="card soon">
-    <div class="card-icon">📋</div>
-    <h2>Gestorías y Asesorías <span class="badge">Próximamente</span></h2>
-    <p>Automatiza la recogida de documentación, recordatorios de plazos y comunicación con clientes.</p>
-    <span class="card-cta" style="color:#94a3b8">En desarrollo</span>
-  </div>
+    <a href="/dental/" class="card">
+      <div class="card-icon">🦷</div>
+      <h2>Clínicas Dentales</h2>
+      <p>Recordatorios de cita automáticos, confirmaciones, cancelaciones y reseñas Google. Menos ausencias, más pacientes satisfechos.</p>
+      <span class="card-cta">Ver solución →</span>
+    </a>
 
-  <div class="card soon">
-    <div class="card-icon">🍽️</div>
-    <h2>Hostelería <span class="badge">Próximamente</span></h2>
-    <p>Gestión de reservas, confirmaciones automáticas y campañas de fidelización para restaurantes y hoteles.</p>
-    <span class="card-cta" style="color:#94a3b8">En desarrollo</span>
-  </div>
+    <a href="/gestorias/" class="card">
+      <div class="card-icon">📋</div>
+      <h2>Gestorías y Asesorías</h2>
+      <p>Avisos de plazos fiscales, solicitud automática de documentación y canal directo con el cliente por WhatsApp. Sin carreras de última hora.</p>
+      <span class="card-cta">Ver solución →</span>
+    </a>
 
-  <div class="card soon">
-    <div class="card-icon">💆</div>
-    <h2>Clínicas de Estética <span class="badge">Próximamente</span></h2>
-    <p>Recordatorios, seguimiento post-tratamiento y solicitud de reseñas para centros de belleza y estética.</p>
-    <span class="card-cta" style="color:#94a3b8">En desarrollo</span>
-  </div>
+    <a href="/hosteleria/" class="card">
+      <div class="card-icon">🍽️</div>
+      <h2>Hostelería</h2>
+      <p>Confirmación automática de reservas, gestión de lista de espera y reseñas post-visita. Más mesas llenas, menos no-shows.</p>
+      <span class="card-cta">Ver solución →</span>
+    </a>
 
-  <div class="card soon">
-    <div class="card-icon">⚖️</div>
-    <h2>Despachos de Abogados <span class="badge">Próximamente</span></h2>
-    <p>Automatiza citas, recordatorios de plazos y comunicación con clientes de forma confidencial y segura.</p>
-    <span class="card-cta" style="color:#94a3b8">En desarrollo</span>
-  </div>
+    <a href="/estetica/" class="card">
+      <div class="card-icon">💆</div>
+      <h2>Clínicas de Estética</h2>
+      <p>Recordatorios con protocolo previo, seguimiento post-tratamiento y solicitud de reseñas en el momento ideal. Más clientes que repiten.</p>
+      <span class="card-cta">Ver solución →</span>
+    </a>
 
-  <div class="card soon">
-    <div class="card-icon">🐾</div>
-    <h2>Clínicas Veterinarias <span class="badge">Próximamente</span></h2>
-    <p>Recordatorios de vacunaciones, citas y seguimiento de mascotas por WhatsApp.</p>
-    <span class="card-cta" style="color:#94a3b8">En desarrollo</span>
+    <a href="/abogados/" class="card">
+      <div class="card-icon">⚖️</div>
+      <h2>Despachos de Abogados</h2>
+      <p>Alertas de plazos procesales, solicitud de documentación y comunicación confidencial con clientes. Cero plazos perdidos.</p>
+      <span class="card-cta">Ver solución →</span>
+    </a>
+
+    <a href="/veterinaria/" class="card">
+      <div class="card-icon">🐾</div>
+      <h2>Clínicas Veterinarias</h2>
+      <p>Recordatorios personalizados de vacunas, citas y seguimiento post-consulta. Ninguna mascota sin protección por un olvido.</p>
+      <span class="card-cta">Ver solución →</span>
+    </a>
+
   </div>
 </div>
 
 <footer>
-  <p>© 2026 <a href="https://ainertia.io">Ainertia Capital S.L.</a> · Córdoba, España · <a href="mailto:comercial@ainertia.ai">comercial@ainertia.ai</a></p>
+  <div class="footer-inner">
+    <p>© 2026 <a href="https://ainertia.ai">Ainertia Capital S.L.</a> · Córdoba, España · <a href="mailto:comercial@ainertia.ai">comercial@ainertia.ai</a></p>
+  </div>
 </footer>
 </body>
 </html>
