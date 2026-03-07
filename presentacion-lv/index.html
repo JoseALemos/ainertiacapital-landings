@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ainertia Capital × Luis Vidal + Arquitectos</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', Arial, sans-serif; background: #0f1e35; color: #fff; overflow: hidden; }
+
+    :root {
+      --blue:   #2d88d4;
+      --navy:   #1e3a5f;
+      --dark:   #0f1e35;
+      --darker: #0a1525;
+      --gray:   #6b7c93;
+      --light:  #e2e8f0;
+      --white:  #ffffff;
+    }
+
+    .slide { display: none; width: 100vw; height: 100vh; padding: 52px 80px; position: relative; flex-direction: column; justify-content: center; }
+    .slide.active { display: flex; }
+    .accent { width: 48px; height: 3px; background: var(--blue); margin-bottom: 26px; border-radius: 2px; }
+    .tag { font-size: 11px; letter-spacing: 3px; color: var(--blue); text-transform: uppercase; margin-bottom: 26px; font-weight: 600; }
+
+    /* ── SLIDE 1 — Portada ── */
+    .s1 { background: linear-gradient(145deg, var(--darker) 0%, var(--navy) 100%); }
+    .s1 .brand { display: flex; align-items: center; gap: 10px; margin-bottom: 64px; }
+    .s1 .brand-dot { width: 9px; height: 9px; background: var(--blue); border-radius: 50%; }
+    .s1 .brand-name { font-size: 12px; letter-spacing: 3px; color: var(--blue); text-transform: uppercase; font-weight: 600; }
+    .s1 h1 { font-size: 52px; font-weight: 700; line-height: 1.12; margin-bottom: 22px; }
+    .s1 h1 em { font-style: normal; color: var(--blue); }
+    .s1 .sub { font-size: 18px; color: var(--gray); margin-bottom: 68px; max-width: 580px; line-height: 1.55; }
+    .s1 .meta { display: flex; gap: 44px; border-top: 1px solid rgba(255,255,255,0.07); padding-top: 28px; }
+    .s1 .meta-item strong { display: block; font-size: 13px; color: var(--light); margin-bottom: 3px; }
+    .s1 .meta-item span { font-size: 12px; color: var(--gray); }
+
+    /* ── SLIDE 2 — Su filosofía ── */
+    .s2 { background: var(--dark); }
+    .s2 h2 { font-size: 42px; font-weight: 700; margin-bottom: 14px; line-height: 1.15; }
+    .s2 h2 em { font-style: normal; color: var(--blue); }
+    .s2 .quote { font-size: 17px; color: var(--gray); margin-bottom: 40px; font-style: italic; border-left: 3px solid var(--blue); padding-left: 20px; max-width: 680px; line-height: 1.65; }
+    .values-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    .val { background: var(--navy); border-radius: 10px; padding: 22px 18px; border: 1px solid rgba(45,136,212,0.12); }
+    .val .icon { font-size: 22px; margin-bottom: 10px; }
+    .val h3 { font-size: 13px; font-weight: 700; color: var(--white); margin-bottom: 6px; }
+    .val p { font-size: 12px; color: var(--gray); line-height: 1.55; }
+
+    /* ── SLIDE 3 — El reto ── */
+    .s3 { background: var(--darker); }
+    .s3 h2 { font-size: 42px; font-weight: 700; margin-bottom: 40px; line-height: 1.15; }
+    .s3 h2 em { font-style: normal; color: var(--blue); }
+    .challenge-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .challenge { background: var(--navy); border-radius: 10px; padding: 26px; border: 1px solid rgba(45,136,212,0.12); }
+    .challenge .icon { font-size: 24px; margin-bottom: 10px; }
+    .challenge h3 { font-size: 14px; font-weight: 600; color: var(--white); margin-bottom: 7px; }
+    .challenge p { font-size: 13px; color: var(--gray); line-height: 1.6; }
+    .challenge .link { font-size: 11px; color: var(--blue); margin-top: 8px; font-style: italic; }
+
+    /* ── SLIDE 4 — Nuestra visión ── */
+    .s4 { background: var(--dark); }
+    .s4 .big { font-size: 44px; font-weight: 800; line-height: 1.2; margin-bottom: 28px; }
+    .s4 .big em { font-style: normal; color: var(--blue); }
+    .s4 .desc { font-size: 17px; color: var(--gray); max-width: 640px; line-height: 1.7; margin-bottom: 44px; }
+    .parallel { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+    .parallel-col { padding: 28px 32px; }
+    .parallel-col.left { background: var(--navy); border-radius: 10px 0 0 10px; border: 1px solid rgba(45,136,212,0.15); border-right: none; }
+    .parallel-col.right { background: rgba(45,136,212,0.12); border-radius: 0 10px 10px 0; border: 1px solid rgba(45,136,212,0.3); }
+    .parallel-col .col-title { font-size: 11px; letter-spacing: 2px; color: var(--blue); text-transform: uppercase; font-weight: 600; margin-bottom: 16px; }
+    .parallel-col ul { list-style: none; }
+    .parallel-col ul li { font-size: 14px; color: var(--light); padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+    .parallel-col ul li:last-child { border: none; }
+
+    /* ── SLIDE 5 — Casos de uso ── */
+    .s5 { background: var(--darker); }
+    .s5 h2 { font-size: 42px; font-weight: 700; margin-bottom: 8px; }
+    .s5 .intro { font-size: 15px; color: var(--gray); margin-bottom: 32px; }
+    .use-cases { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .uc { background: var(--navy); border-radius: 10px; padding: 22px; border: 1px solid rgba(45,136,212,0.1); }
+    .uc .emoji { font-size: 22px; margin-bottom: 10px; }
+    .uc h3 { font-size: 13px; font-weight: 700; color: var(--white); margin-bottom: 10px; }
+    .uc ul { list-style: none; }
+    .uc ul li { font-size: 12px; color: var(--gray); padding: 3px 0 3px 13px; position: relative; line-height: 1.5; }
+    .uc ul li::before { content: '→'; position: absolute; left: 0; color: var(--blue); font-size: 10px; top: 4px; }
+    .uc .valor { font-size: 10px; color: var(--blue); margin-top: 10px; font-style: italic; letter-spacing: 0.5px; }
+
+    /* ── SLIDE 6 — Propuesta ── */
+    .s6 { background: var(--dark); }
+    .s6 h2 { font-size: 42px; font-weight: 700; margin-bottom: 40px; }
+    .options { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .opt { background: var(--navy); border-radius: 12px; padding: 28px; border: 1px solid rgba(255,255,255,0.05); position: relative; }
+    .opt.featured { border-color: var(--blue); background: linear-gradient(145deg, #1a3560 0%, #163258 100%); }
+    .opt .badge { position: absolute; top: -11px; left: 50%; transform: translateX(-50%); background: var(--blue); color: white; font-size: 10px; padding: 4px 14px; border-radius: 20px; white-space: nowrap; font-weight: 600; }
+    .opt .fase { font-size: 10px; color: var(--blue); letter-spacing: 2px; margin-bottom: 10px; font-weight: 600; }
+    .opt h3 { font-size: 16px; font-weight: 700; color: var(--white); margin-bottom: 6px; }
+    .opt .price { font-size: 24px; font-weight: 800; color: var(--blue); margin: 12px 0; }
+    .opt .price span { font-size: 12px; font-weight: 400; color: var(--gray); }
+    .opt .custom { font-size: 13px; color: var(--gray); margin: 12px 0; font-style: italic; }
+    .opt ul { list-style: none; }
+    .opt ul li { font-size: 12px; color: #a0b0c5; padding: 5px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+    .opt ul li:last-child { border: none; }
+
+    /* ── SLIDE 7 — Auditoría ── */
+    .s7 { background: var(--darker); }
+    .s7 h2 { font-size: 42px; font-weight: 700; margin-bottom: 40px; }
+    .phases { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .phase { background: var(--navy); border-radius: 10px; padding: 24px; }
+    .phase .week { font-size: 10px; color: var(--blue); letter-spacing: 2px; margin-bottom: 10px; font-weight: 600; }
+    .phase h3 { font-size: 15px; font-weight: 600; color: var(--white); margin-bottom: 12px; }
+    .phase ul { list-style: none; }
+    .phase ul li { font-size: 12px; color: var(--gray); padding: 4px 0 4px 14px; position: relative; }
+    .phase ul li::before { content: '✓'; position: absolute; left: 0; color: var(--blue); font-size: 10px; top: 5px; }
+    .guarantee { margin-top: 28px; background: rgba(45,136,212,0.08); border-radius: 10px; padding: 22px 28px; border: 1px solid rgba(45,136,212,0.22); }
+    .guarantee .g-title { font-size: 10px; color: var(--blue); letter-spacing: 2px; font-weight: 700; margin-bottom: 8px; }
+    .guarantee p { font-size: 14px; color: var(--light); line-height: 1.6; }
+
+    /* ── SLIDE 8 — Cierre ── */
+    .s8 { background: linear-gradient(145deg, var(--darker) 0%, var(--navy) 100%); text-align: center; align-items: center; }
+    .s8 .eyebrow { font-size: 12px; letter-spacing: 3px; color: var(--blue); text-transform: uppercase; font-weight: 600; margin-bottom: 28px; }
+    .s8 h2 { font-size: 50px; font-weight: 800; margin-bottom: 18px; line-height: 1.15; }
+    .s8 h2 em { font-style: normal; color: var(--blue); }
+    .s8 .tagline { font-size: 17px; color: var(--gray); margin-bottom: 48px; max-width: 600px; line-height: 1.65; }
+    .s8 .steps { display: flex; gap: 20px; margin-bottom: 48px; }
+    .s8 .step { background: rgba(255,255,255,0.04); border-radius: 10px; padding: 20px 26px; border: 1px solid rgba(255,255,255,0.07); }
+    .s8 .step .n { font-size: 28px; font-weight: 800; color: var(--blue); }
+    .s8 .step p { font-size: 12px; color: var(--gray); margin-top: 5px; }
+    .s8 .contact { font-size: 13px; color: var(--gray); }
+    .s8 .contact strong { color: var(--light); }
+
+    /* Nav */
+    .nav { position: fixed; bottom: 26px; right: 34px; display: flex; gap: 8px; z-index: 100; }
+    .nav button { background: var(--navy); border: 1px solid rgba(45,136,212,0.3); color: var(--light); padding: 8px 16px; border-radius: 8px; cursor: pointer; font-size: 13px; transition: all 0.2s; }
+    .nav button:hover { background: var(--blue); border-color: var(--blue); }
+    .counter { position: fixed; bottom: 26px; left: 34px; font-size: 12px; color: var(--gray); }
+  </style>
+</head>
+<body>
+
+<!-- ── 1. PORTADA ── -->
+<div class="slide s1 active">
+  <div class="brand"><div class="brand-dot"></div><div class="brand-name">Ainertia Capital</div></div>
+  <h1>IA que trabaja<br>con la <em>mayor exigencia</em></h1>
+  <p class="sub">Una propuesta pensada para Luis Vidal + Arquitectos — no para estudios en general</p>
+  <div class="meta">
+    <div class="meta-item"><strong>Para</strong><span>Martín Rivas</span></div>
+    <div class="meta-item"><strong>Fecha</strong><span>9 de marzo de 2026</span></div>
+    <div class="meta-item"><strong>Preparado por</strong><span>Ainertia Capital S.L.</span></div>
+  </div>
+</div>
+
+<!-- ── 2. SU FILOSOFÍA ── -->
+<div class="slide s2">
+  <div class="tag">Lo que os define</div>
+  <h2>Vosotros ya practicáis<br><em>Arquitectura +</em></h2>
+  <p class="quote">"La arquitectura debía, sencillamente, trabajar con la mayor exigencia — esforzarse más para alcanzar mayores objetivos, no sólo económicos, sino también medioambientales y sociales."<br><strong style="color:#a0b0c5;font-style:normal;font-size:13px;display:block;margin-top:10px;">— Luis Vidal, fundador</strong></p>
+  <div class="values-grid">
+    <div class="val">
+      <div class="icon">🎯</div>
+      <h3>Excelencia</h3>
+      <p>La excelencia está en cada detalle. No existe margen de error en lo que diseñáis.</p>
+    </div>
+    <div class="val">
+      <div class="icon">🌍</div>
+      <h3>Sostenibilidad</h3>
+      <p>LEED y BREEAM en todos vuestros proyectos. La responsabilidad ambiental es innegociable.</p>
+    </div>
+    <div class="val">
+      <div class="icon">🤝</div>
+      <h3>Confianza</h3>
+      <p>Las relaciones se construyen sobre confianza. Con clientes, con el equipo, con socios.</p>
+    </div>
+    <div class="val">
+      <div class="icon">🌐</div>
+      <h3>Interculturalidad</h3>
+      <p>5 países, múltiples culturas. La diversidad es vuestra ventaja competitiva.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ── 3. EL RETO ── -->
+<div class="slide s3">
+  <div class="tag">El punto de partida</div>
+  <h2>El reto no es adoptar IA.<br><em>Es adoptarla bien.</em></h2>
+  <div class="challenge-grid">
+    <div class="challenge">
+      <div class="icon">⏱</div>
+      <h3>Horas del equipo técnico en tareas documentales</h3>
+      <p>Memorias, pliegos, informes de certificación LEED/BREEAM. Trabajo que existe pero no es diseño.</p>
+      <p class="link">→ Tiempo que podría estar en innovación</p>
+    </div>
+    <div class="challenge">
+      <div class="icon">📚</div>
+      <h3>300+ proyectos de conocimiento no accesible</h3>
+      <p>La experiencia acumulada existe en documentos y personas. Difícil de recuperar, difícil de transmitir a nuevos miembros del equipo.</p>
+      <p class="link">→ Valor que se pierde en cada rotación</p>
+    </div>
+    <div class="challenge">
+      <div class="icon">🌍</div>
+      <h3>5 marcos normativos gestionados manualmente</h3>
+      <p>CTE, Building Regulations, LEED, BREEAM, normativas locales por país. Cada proyecto requiere consultas paralelas lentas y propensas a errores.</p>
+      <p class="link">→ Riesgo técnico y operativo real</p>
+    </div>
+    <div class="challenge">
+      <div class="icon">🤖</div>
+      <h3>Microsoft 365 Copilot sin estrategia ni formación</h3>
+      <p>La herramienta está. La licencia se paga. Pero sin casos de uso definidos y sin formación adaptada, el equipo no extrae su valor.</p>
+      <p class="link">→ Inversión infrautilizada</p>
+    </div>
+  </div>
+</div>
+
+<!-- ── 4. NUESTRA VISIÓN ── -->
+<div class="slide s4">
+  <div class="tag">Cómo lo vemos</div>
+  <div class="big">La IA no es para<br>hacer más barato.<br>Es para hacer <em>más</em>.</div>
+  <p class="desc">Igual que Arquitectura + significa que un edificio debe ser más — más inclusivo, más sostenible, más centrado en las personas — la IA debe hacer que vuestro equipo sea más de lo que ya es.</p>
+  <div class="parallel">
+    <div class="parallel-col left">
+      <div class="col-title">Lo que NO es esto</div>
+      <ul>
+        <li>Recortar plantilla o externalizar trabajo</li>
+        <li>Reemplazar el criterio del arquitecto</li>
+        <li>Implantar tecnología genérica</li>
+        <li>Un proyecto de IT sin retorno claro</li>
+      </ul>
+    </div>
+    <div class="parallel-col right">
+      <div class="col-title">Lo que SÍ es esto</div>
+      <ul>
+        <li>Que cada arquitecto tenga más tiempo para diseñar</li>
+        <li>Que el conocimiento del estudio sea accesible</li>
+        <li>Que la normativa no sea un cuello de botella</li>
+        <li>Que la excelencia escale con el equipo</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ── 5. CASOS DE USO ── -->
+<div class="slide s5">
+  <div class="tag">Aplicaciones concretas</div>
+  <h2>Dónde la IA genera valor real</h2>
+  <p class="intro">Casos específicos para un estudio internacional con proyectos de alta complejidad técnica</p>
+  <div class="use-cases">
+    <div class="uc">
+      <div class="emoji">📄</div>
+      <h3>Documentación técnica</h3>
+      <ul>
+        <li>Memorias descriptivas automáticas</li>
+        <li>Pliegos de condiciones técnicas</li>
+        <li>Informes de certificación LEED/BREEAM</li>
+        <li>Fichas de proyecto estandarizadas</li>
+      </ul>
+      <div class="valor">→ Valor: excelencia sin horas extra</div>
+    </div>
+    <div class="uc">
+      <div class="emoji">📋</div>
+      <h3>Gestión normativa</h3>
+      <ul>
+        <li>Consulta inteligente por normativa y país</li>
+        <li>Comparativa CTE · Building Regs · LEED</li>
+        <li>Requisitos por tipología (aeropuerto, hospital)</li>
+        <li>Alertas de actualizaciones normativas</li>
+      </ul>
+      <div class="valor">→ Valor: precisión en 5 mercados</div>
+    </div>
+    <div class="uc">
+      <div class="emoji">🧠</div>
+      <h3>Motor de conocimiento</h3>
+      <ul>
+        <li>Búsqueda en 300+ proyectos anteriores</li>
+        <li>Lecciones aprendidas accesibles al equipo</li>
+        <li>Onboarding de nuevos talentos</li>
+        <li>Base de conocimiento viva y actualizada</li>
+      </ul>
+      <div class="valor">→ Valor: el conocimiento no se pierde</div>
+    </div>
+    <div class="uc">
+      <div class="emoji">💬</div>
+      <h3>Comunicación</h3>
+      <ul>
+        <li>Emails técnicos a clientes internacionales</li>
+        <li>Traducciones ES · EN · PT especializadas</li>
+        <li>Preparación de presentaciones ejecutivas</li>
+        <li>Actas de reunión automáticas</li>
+      </ul>
+      <div class="valor">→ Valor: equipo intercultural más ágil</div>
+    </div>
+    <div class="uc">
+      <div class="emoji">✈️</div>
+      <h3>Proyectos aeroportuarios</h3>
+      <ul>
+        <li>Normativa ICAO · IATA integrada</li>
+        <li>Accesibilidad por país y tipología</li>
+        <li>Estándares de sostenibilidad por cliente</li>
+        <li>Especificaciones técnicas históricas</li>
+      </ul>
+      <div class="valor">→ Valor: expertise concentrado y accesible</div>
+    </div>
+    <div class="uc">
+      <div class="emoji">📊</div>
+      <h3>Gestión de proyectos</h3>
+      <ul>
+        <li>Reportes de avance automáticos</li>
+        <li>Resúmenes ejecutivos para dirección</li>
+        <li>Registro y análisis de cambios</li>
+        <li>Control de desviaciones en tiempo real</li>
+      </ul>
+      <div class="valor">→ Valor: dirección con más visibilidad</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── 6. PROPUESTA ── -->
+<div class="slide s6">
+  <div class="tag">Cómo trabajamos</div>
+  <h2>Tres formas de empezar</h2>
+  <div class="options">
+    <div class="opt featured">
+      <div class="badge">→ Recomendado como primer paso</div>
+      <div class="fase">FASE 1</div>
+      <h3>Auditoría IA</h3>
+      <div class="price">2.500€ <span>· tarifa fija · 3 semanas</span></div>
+      <ul>
+        <li>Diagnóstico de procesos con entrevistas</li>
+        <li>Mapa de oportunidades priorizado</li>
+        <li>Selección de herramientas adecuadas</li>
+        <li>Hoja de ruta realista a 6 meses</li>
+        <li>Presentación a dirección incluida</li>
+      </ul>
+    </div>
+    <div class="opt">
+      <div class="fase">FASE 2</div>
+      <h3>Activación Microsoft 365 Copilot</h3>
+      <div class="custom">Propuesta personalizada según alcance</div>
+      <ul>
+        <li>Activación Microsoft 365 Copilot empresarial</li>
+        <li>Formación por perfil (arquitecto, PM, admin)</li>
+        <li>Casos de uso específicos para el estudio</li>
+        <li>Métricas de adopción y uso real</li>
+        <li>Soporte y optimización continua</li>
+      </ul>
+    </div>
+    <div class="opt">
+      <div class="fase">FASE 3</div>
+      <h3>Motor de conocimiento corporativo</h3>
+      <div class="custom">Propuesta personalizada según alcance</div>
+      <ul>
+        <li>Sistema RAG + LLM privado y seguro</li>
+        <li>Entrenado con vuestra documentación</li>
+        <li>Proyectos, normativas e histórico accesibles</li>
+        <li>Integración con vuestros sistemas actuales</li>
+        <li>Panel de control y administración propio</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ── 7. AUDITORÍA DETALLE ── -->
+<div class="slide s7">
+  <div class="tag">Auditoría IA — En detalle</div>
+  <h2>3 semanas. Diagnóstico real.<br>Plan accionable.</h2>
+  <div class="phases">
+    <div class="phase">
+      <div class="week">SEMANA 1 · DIAGNÓSTICO</div>
+      <h3>Escuchar y mapear</h3>
+      <ul>
+        <li>Entrevistas con 4-6 personas clave</li>
+        <li>Análisis de procesos reales del equipo</li>
+        <li>Inventario tecnológico completo</li>
+        <li>Identificación de cuellos de botella</li>
+      </ul>
+    </div>
+    <div class="phase">
+      <div class="week">SEMANA 2 · ANÁLISIS</div>
+      <h3>Diseñar soluciones</h3>
+      <ul>
+        <li>Mapa de oportunidades por departamento</li>
+        <li>Evaluación y selección de herramientas</li>
+        <li>Análisis de ROI por solución</li>
+        <li>Evaluación GDPR y propiedad intelectual</li>
+      </ul>
+    </div>
+    <div class="phase">
+      <div class="week">SEMANA 3 · ENTREGA</div>
+      <h3>Plan accionable</h3>
+      <ul>
+        <li>Informe ejecutivo 15-20 páginas</li>
+        <li>Hoja de ruta priorizada y presupuestada</li>
+        <li>Recomendación de herramientas justificada</li>
+        <li>Presentación a dirección (30 min)</li>
+      </ul>
+    </div>
+  </div>
+  <div class="guarantee">
+    <div class="g-title">GARANTÍA DE INVERSIÓN</div>
+    <p>Si decidís continuar con Ainertia tras la auditoría, los 2.500€ se descuentan íntegramente de la implementación. La auditoría no tiene coste adicional si seguís adelante con nosotros.</p>
+  </div>
+</div>
+
+<!-- ── 8. CIERRE ── -->
+<div class="slide s8">
+  <div class="eyebrow">El siguiente paso</div>
+  <h2>Arquitectura +.<br><em>Con la IA que lo merece.</em></h2>
+  <p class="tagline">Vosotros diseñáis los edificios más importantes del mundo con la mayor exigencia.<br>Nosotros ponemos la inteligencia para que vuestro equipo trabaje a esa misma altura.</p>
+  <div class="steps">
+    <div class="step"><div class="n">1</div><p>Confirmar inicio de auditoría</p></div>
+    <div class="step"><div class="n">2</div><p>Firma de acuerdo de confidencialidad</p></div>
+    <div class="step"><div class="n">3</div><p>Arranque en una semana</p></div>
+  </div>
+  <p class="contact"><strong>Ainertia Capital S.L.</strong> · ainertiacapital.com · administracion@ainertia.ai</p>
+</div>
+
+<!-- Nav -->
+<div class="counter" id="counter">1 / 8</div>
+<div class="nav">
+  <button onclick="prev()">← Anterior</button>
+  <button onclick="next()">Siguiente →</button>
+</div>
+
+<script>
+  let current = 0;
+  const slides = document.querySelectorAll('.slide');
+  function show(n) {
+    slides[current].classList.remove('active');
+    current = (n + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    document.getElementById('counter').textContent = `${current + 1} / ${slides.length}`;
+  }
+  function next() { show(current + 1); }
+  function prev() { show(current - 1); }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') next();
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') prev();
+  });
+</script>
+</body>
+</html>
