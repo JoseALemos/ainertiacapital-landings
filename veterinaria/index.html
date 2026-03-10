@@ -127,6 +127,17 @@
     @media (max-width: 900px) { .empathy-grid { grid-template-columns: 1fr 1fr; } .metrics-grid { grid-template-columns: 1fr 1fr; } .steps { grid-template-columns: 1fr 1fr; } .solution-grid { grid-template-columns: 1fr; } }
     @media (max-width: 600px) { .empathy-grid { grid-template-columns: 1fr; } .metrics-grid { grid-template-columns: 1fr; } .steps { grid-template-columns: 1fr 1fr; gap: 1rem; } .hero { padding: 3.5rem 1.25rem 3rem; } .section { padding: 3rem 1.25rem; } .hero-trust { gap: 1rem; } .trust-dot { display: none; } .nav-tagline { display: none; } .nav-back { display: none; } .nav-inner { padding: 0.875rem 1.25rem; } }
     @media (max-width: 400px) { .steps { grid-template-columns: 1fr; } }
+
+    /* ── FAQ ── */
+    .faq-section{background:#f8fafc;border-top:1px solid var(--border);padding:4rem 2rem}
+    .faq-inner{max-width:760px;margin:0 auto}
+    .faq-section-label{display:block;font-size:.78rem;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:1px;margin-bottom:.5rem;text-align:center}
+    .faq-title{font-size:1.5rem;font-weight:800;color:var(--dark);margin-bottom:.5rem;text-align:center}
+    .faq-subtitle{text-align:center;color:var(--muted);font-size:.95rem;margin-bottom:2.5rem}
+    .faq-item{border-bottom:1px solid var(--border);padding:1.25rem 0}
+    .faq-item:last-child{border-bottom:none}
+    .faq-q{font-weight:700;color:var(--dark);margin-bottom:.5rem;font-size:.95rem}
+    .faq-a{color:var(--muted);font-size:.875rem;line-height:1.65}
   </style>
   <!-- ── SEO ──────────────────────────────────────────────────── -->
   <meta name="keywords" content="automatización clínica veterinaria, recordatorio vacunas perro, WhatsApp veterinario, citas veterinarias automáticas, reseñas Google veterinario"/>
@@ -174,6 +185,54 @@
       "availableLanguage": "Spanish"
     }
   </script>
+
+  <script type="application/ld+json">
+  {
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Qué recordatorios puede automatizar una clínica veterinaria?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Vacunaciones anuales, desparasitaciones trimestrales, revisiones post-operatorias, citas de seguimiento de enfermedades crónicas, renovación de recetas, y recordatorios de tratamientos preventivos estacionales (antipulgas, garrapatas…)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Puede el asistente enviar recordatorios por mascota, no por propietario?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí. El sistema gestiona un registro por mascota. Un mismo propietario con varios animales recibe recordatorios personalizados para cada uno, con el nombre del animal y el tratamiento específico."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Se integra con mi software de clínica veterinaria?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Compatible con los principales programas de gestión veterinaria (VetManager, Qvet, ClinicVet, Vetsys…). En la configuración inicial sincronizamos los datos de pacientes y próximas visitas."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué pasa cuando el propietario no responde al recordatorio?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "El sistema puede configurarse para enviar un segundo aviso a los 7 días si no hay respuesta. Después de dos intentos, la alerta llega a tu equipo para que realice seguimiento manual si lo estima necesario."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cuánto tiempo ahorra una clínica veterinaria al mes?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Entre 10 y 25 horas mensuales en llamadas de recordatorio. Además, las clínicas que usan el sistema reportan un aumento del 30-50% en la tasa de cumplimiento de vacunaciones anuales y tratamientos preventivos."
+      }
+    }
+  ]
+}
+  </script>
   <link rel="sitemap" type="application/xml" href="/sitemap.xml"/>
   <meta name="geo.region" content="ES-CO"/>
   <meta name="geo.placename" content="Córdoba, España"/>
@@ -196,7 +255,7 @@
 <section class="hero">
   <div class="hero-inner">
     <div class="hero-eyebrow">Asistente IA para clínicas veterinarias</div>
-    <h1>Cada mascota, siempre<br/><em>al día</em>. Sin recordarlo tú.</h1>
+    <h1>Automatización con <em>IA para clínicas veterinarias</em>:<br/>recordatorios que nunca se olvidan.</h1>
     <p class="hero-sub">
       Recordatorios automáticos de vacunas, desparasitación y citas por WhatsApp. Para que ninguna mascota se quede sin protección por un olvido.
     </p>
@@ -398,7 +457,7 @@
 
 <footer>
   <div class="footer-inner">
-    <p>© 2026 <a href="https://ainertia.ai">Ainertia Capital S.L.</a> · Córdoba, España · <a href="mailto:comercial@ainertia.ai">comercial@ainertia.ai</a></p>
+    <p>© 2026 <a href="https://ainertia.ai">Ainertia Capital S.L.</a> · CIF B75739656 · Córdoba, España · <a href="tel:+34613244738">613 244 738</a> · <a href="mailto:comercial@ainertia.ai">comercial@ainertia.ai</a></p>
   </div>
 </footer>
 </body>

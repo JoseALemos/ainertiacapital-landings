@@ -127,6 +127,17 @@
     @media (max-width: 900px) { .empathy-grid { grid-template-columns: 1fr 1fr; } .metrics-grid { grid-template-columns: 1fr 1fr; } .steps { grid-template-columns: 1fr 1fr; } .solution-grid { grid-template-columns: 1fr; } }
     @media (max-width: 600px) { .empathy-grid { grid-template-columns: 1fr; } .metrics-grid { grid-template-columns: 1fr; } .steps { grid-template-columns: 1fr 1fr; gap: 1rem; } .hero { padding: 3.5rem 1.25rem 3rem; } .section { padding: 3rem 1.25rem; } .hero-trust { gap: 1rem; } .trust-dot { display: none; } .nav-tagline { display: none; } .nav-back { display: none; } .nav-inner { padding: 0.875rem 1.25rem; } }
     @media (max-width: 400px) { .steps { grid-template-columns: 1fr; } }
+
+    /* ── FAQ ── */
+    .faq-section{background:#f8fafc;border-top:1px solid var(--border);padding:4rem 2rem}
+    .faq-inner{max-width:760px;margin:0 auto}
+    .faq-section-label{display:block;font-size:.78rem;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:1px;margin-bottom:.5rem;text-align:center}
+    .faq-title{font-size:1.5rem;font-weight:800;color:var(--dark);margin-bottom:.5rem;text-align:center}
+    .faq-subtitle{text-align:center;color:var(--muted);font-size:.95rem;margin-bottom:2.5rem}
+    .faq-item{border-bottom:1px solid var(--border);padding:1.25rem 0}
+    .faq-item:last-child{border-bottom:none}
+    .faq-q{font-weight:700;color:var(--dark);margin-bottom:.5rem;font-size:.95rem}
+    .faq-a{color:var(--muted);font-size:.875rem;line-height:1.65}
   </style>
   <!-- ── SEO ──────────────────────────────────────────────────── -->
   <meta name="keywords" content="automatización restaurante, confirmación reservas WhatsApp, eliminar no-shows restaurante, reseñas Google hostelería, gestión reservas IA"/>
@@ -174,6 +185,54 @@
       "availableLanguage": "Spanish"
     }
   </script>
+
+  <script type="application/ld+json">
+  {
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Cómo elimina el asistente IA los no-shows en restaurantes?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Enviando recordatorios de reserva por WhatsApp 24h y 2h antes. El cliente confirma o cancela con un solo toque. Si cancela, el sistema puede liberar la mesa y notificar a clientes en lista de espera automáticamente."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Funciona con mi sistema de reservas actual (TheFork, Cover Manager, Resy…)?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "El asistente puede integrarse con los principales sistemas de reservas o funcionar de forma independiente. En la llamada de configuración vemos cuál es la mejor opción para tu establecimiento."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Puede el asistente gestionar la lista de espera?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí. Cuando se produce una cancelación, el sistema notifica automáticamente a los clientes en lista de espera por orden de llegada, dándoles un tiempo limitado para confirmar."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Puedo pedir reseñas en Google tras la visita?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí. El asistente envía un mensaje personalizado de seguimiento 2h después de la visita, agradeciendo la presencia y facilitando el enlace directo a tu ficha de Google para dejar reseña."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cuánto cuesta y cuándo se amortiza?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "El servicio parte desde 100€/mes. Con una tasa de no-shows del 15-20% habitual en hostelería, evitar solo 2-3 mesas vacías al mes ya cubre el coste. La mayoría de restaurantes se amortizan en la primera semana."
+      }
+    }
+  ]
+}
+  </script>
   <link rel="sitemap" type="application/xml" href="/sitemap.xml"/>
   <meta name="geo.region" content="ES-CO"/>
   <meta name="geo.placename" content="Córdoba, España"/>
@@ -196,7 +255,7 @@
 <section class="hero">
   <div class="hero-inner">
     <div class="hero-eyebrow">Asistente IA para restaurantes y hoteles</div>
-    <h1>Más mesas llenas.<br/>Menos <em>teléfono</em>.</h1>
+    <h1>Automatización con <em>IA para restaurantes y hoteles</em>:<br/>más mesas llenas, cero no-shows.</h1>
     <p class="hero-sub">
       Confirmación automática de reservas, gestión de lista de espera y reseñas Google sin esfuerzo. Tu equipo de sala se centra en lo que importa: la experiencia.
     </p>
@@ -398,7 +457,7 @@
 
 <footer>
   <div class="footer-inner">
-    <p>© 2026 <a href="https://ainertia.ai">Ainertia Capital S.L.</a> · Córdoba, España · <a href="mailto:comercial@ainertia.ai">comercial@ainertia.ai</a></p>
+    <p>© 2026 <a href="https://ainertia.ai">Ainertia Capital S.L.</a> · CIF B75739656 · Córdoba, España · <a href="tel:+34613244738">613 244 738</a> · <a href="mailto:comercial@ainertia.ai">comercial@ainertia.ai</a></p>
   </div>
 </footer>
 </body>

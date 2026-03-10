@@ -127,6 +127,17 @@
     @media (max-width: 900px) { .empathy-grid { grid-template-columns: 1fr 1fr; } .metrics-grid { grid-template-columns: 1fr 1fr; } .steps { grid-template-columns: 1fr 1fr; } .solution-grid { grid-template-columns: 1fr; } }
     @media (max-width: 600px) { .empathy-grid { grid-template-columns: 1fr; } .metrics-grid { grid-template-columns: 1fr; } .steps { grid-template-columns: 1fr 1fr; gap: 1rem; } .hero { padding: 3.5rem 1.25rem 3rem; } .section { padding: 3rem 1.25rem; } .hero-trust { gap: 1rem; } .trust-dot { display: none; } .nav-tagline { display: none; } .nav-back { display: none; } .nav-inner { padding: 0.875rem 1.25rem; } }
     @media (max-width: 400px) { .steps { grid-template-columns: 1fr; } }
+
+    /* ── FAQ ── */
+    .faq-section{background:#f8fafc;border-top:1px solid var(--border);padding:4rem 2rem}
+    .faq-inner{max-width:760px;margin:0 auto}
+    .faq-section-label{display:block;font-size:.78rem;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:1px;margin-bottom:.5rem;text-align:center}
+    .faq-title{font-size:1.5rem;font-weight:800;color:var(--dark);margin-bottom:.5rem;text-align:center}
+    .faq-subtitle{text-align:center;color:var(--muted);font-size:.95rem;margin-bottom:2.5rem}
+    .faq-item{border-bottom:1px solid var(--border);padding:1.25rem 0}
+    .faq-item:last-child{border-bottom:none}
+    .faq-q{font-weight:700;color:var(--dark);margin-bottom:.5rem;font-size:.95rem}
+    .faq-a{color:var(--muted);font-size:.875rem;line-height:1.65}
   </style>
   <!-- ── SEO ──────────────────────────────────────────────────── -->
   <meta name="keywords" content="automatización centro estética, recordatorios cita belleza, seguimiento post-tratamiento, reseñas Google estética, WhatsApp clínica estética"/>
@@ -174,6 +185,54 @@
       "availableLanguage": "Spanish"
     }
   </script>
+
+  <script type="application/ld+json">
+  {
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Qué automatizaciones son más útiles para una clínica de estética?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Recordatorios de cita con instrucciones de preparación previas al tratamiento, seguimiento post-tratamiento a las 48-72h, solicitud de reseñas en el momento de máxima satisfacción del cliente, y recordatorios de mantenimiento periódico (depilación láser, tratamientos faciales…)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Puedo enviar instrucciones previas personalizadas por tipo de tratamiento?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí. El sistema envía automáticamente las indicaciones específicas de cada tratamiento (no depilarse antes de láser, llegar sin maquillaje, etc.) en el momento adecuado antes de la cita."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cómo funciona el seguimiento post-tratamiento?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A las 48-72h después del tratamiento, el asistente envía un mensaje para saber cómo está la evolución. Esto genera confianza, detecta problemas antes de que escalen y es el momento ideal para pedir una reseña."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Puedo automatizar el recordatorio de sesiones de mantenimiento?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí. Para tratamientos con sesiones múltiples o revisiones periódicas, el sistema puede recordar automáticamente cuándo toca la próxima sesión, generando fidelización sin esfuerzo."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Es compatible con cualquier software de agenda de estética?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Funciona con cualquier agenda, desde Google Calendar hasta software especializado como Acuity, SimplyBook o Genei. En algunos casos la integración es directa; en otros funciona de forma independiente."
+      }
+    }
+  ]
+}
+  </script>
   <link rel="sitemap" type="application/xml" href="/sitemap.xml"/>
   <meta name="geo.region" content="ES-CO"/>
   <meta name="geo.placename" content="Córdoba, España"/>
@@ -196,7 +255,7 @@
 <section class="hero">
   <div class="hero-inner">
     <div class="hero-eyebrow">Asistente IA para clínicas de estética y belleza</div>
-    <h1>Menos huecos.<br/>Más clientes que <em>repiten</em>.</h1>
+    <h1>Automatización con <em>IA para clínicas de estética</em>:<br/>más clientes que repiten, menos huecos.</h1>
     <p class="hero-sub">
       Recordatorios automáticos, seguimiento post-tratamiento personalizado y reseñas sin esfuerzo. Para que tu centro crezca mientras tú te centras en el tratamiento.
     </p>
@@ -398,7 +457,7 @@
 
 <footer>
   <div class="footer-inner">
-    <p>© 2026 <a href="https://ainertia.ai">Ainertia Capital S.L.</a> · Córdoba, España · <a href="mailto:comercial@ainertia.ai">comercial@ainertia.ai</a></p>
+    <p>© 2026 <a href="https://ainertia.ai">Ainertia Capital S.L.</a> · CIF B75739656 · Córdoba, España · <a href="tel:+34613244738">613 244 738</a> · <a href="mailto:comercial@ainertia.ai">comercial@ainertia.ai</a></p>
   </div>
 </footer>
 </body>
