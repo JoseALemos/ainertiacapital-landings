@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Ainertia Capital — Automatización con IA para empresas | Córdoba</title>
-  <meta name="description" content="Automatizamos las tareas repetitivas de tu negocio con inteligencia artificial. Clínicas dentales, gestorías, hostelería, estética, abogados y veterinarios. Sin permanencia. Instalación en 24h."/>
+  <title>Consultoría IA y Automatización para Empresas | Ainertia Capital — Córdoba</title>
+  <meta name="description" content="Automatizamos las tareas repetitivas de tu negocio con inteligencia artificial. Agentes IA para clínicas, gestorías, hostelería y despachos. Sin permanencia. Instalación en 24-48h."/>
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     body{font-family:'Segoe UI',system-ui,sans-serif;background:#f8fafc;color:#2c3e50;min-height:100vh;display:flex;flex-direction:column}
@@ -38,6 +38,23 @@
     .card-cta{display:inline-flex;align-items:center;gap:.3rem;margin-top:.5rem;font-size:.82rem;font-weight:700;color:#1a6fb5;transition:gap .15s}
     .card:hover .card-cta{gap:.6rem}
 
+    /* FAQ */
+    .faq-section{background:#fff;border-top:1px solid #e2e8f0;padding:4rem 2rem}
+    .faq-inner{max-width:760px;margin:0 auto}
+    .faq-title{font-size:1.4rem;font-weight:800;color:#1a2332;margin-bottom:.5rem;text-align:center}
+    .faq-subtitle{text-align:center;color:#6b7c93;font-size:.95rem;margin-bottom:2.5rem}
+    .faq-item{border-bottom:1px solid #e2e8f0;padding:1.25rem 0}
+    .faq-item:last-child{border-bottom:none}
+    .faq-q{font-weight:700;color:#1a2332;margin-bottom:.5rem;font-size:.95rem}
+    .faq-a{color:#6b7c93;font-size:.875rem;line-height:1.65}
+
+    /* CTA BOTTOM */
+    .cta-bottom{background:linear-gradient(135deg,#1a6fb5 0%,#0fa98e 100%);color:#fff;text-align:center;padding:3.5rem 2rem}
+    .cta-bottom h2{font-size:1.6rem;font-weight:900;margin-bottom:.75rem}
+    .cta-bottom p{opacity:.85;margin-bottom:1.75rem;font-size:1rem}
+    .cta-btn{display:inline-block;background:#fff;color:#1a6fb5;font-weight:800;padding:.85rem 2rem;border-radius:100px;text-decoration:none;font-size:.95rem;transition:transform .15s,box-shadow .15s}
+    .cta-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.15)}
+
     /* FOOTER */
     footer{margin-top:auto;background:#1a2332;color:rgba(255,255,255,.45);text-align:center;padding:2rem;font-size:.8rem}
     footer .footer-inner{max-width:1200px;margin:0 auto}
@@ -47,7 +64,7 @@
     @media(max-width:600px){.hero{padding:3rem 1.25rem 2.5rem}.grid-section{padding:2rem 1.25rem}.hero-trust{gap:.75rem}.trust-dot{display:none}}
   </style>
   <!-- ── SEO ──────────────────────────────────────────────────── -->
-  <meta name="keywords" content="automatización IA, inteligencia artificial empresas, automatización WhatsApp, Ainertia Capital, Córdoba, España"/>
+  <meta name="keywords" content="consultoría inteligencia artificial, automatización IA empresas, agentes IA pymes, automatización WhatsApp empresa, inteligencia artificial Córdoba, automatización procesos empresas España, chatbot IA empresas, Ainertia Capital"/>
   <meta name="author" content="Ainertia Capital S.L."/>
   <meta name="robots" content="index, follow"/>
   <link rel="canonical" href="https://ainertiacapital.com/"/>
@@ -55,8 +72,8 @@
   <meta property="og:type" content="website"/>
   <meta property="og:site_name" content="Ainertia Capital"/>
   <meta property="og:locale" content="es_ES"/>
-  <meta property="og:title" content="Ainertia Capital — Automatización con IA para tu negocio"/>
-  <meta property="og:description" content="Menos tareas repetitivas. Más tiempo para lo que importa. Soluciones de IA para empresas en España."/>
+  <meta property="og:title" content="Consultoría IA y Automatización para Empresas | Ainertia Capital"/>
+  <meta property="og:description" content="Automatizamos las tareas repetitivas de tu negocio con inteligencia artificial. Agentes IA para clínicas, gestorías, hostelería y despachos. Sin permanencia. Instalación en 24-48h."/>
   <meta property="og:url" content="https://ainertiacapital.com/"/>
   <meta property="og:image" content="https://ainertiacapital.com/og-image.png"/>
   <meta property="og:image:width" content="1200"/>
@@ -65,29 +82,87 @@
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image"/>
   <meta name="twitter:site" content="@ainertiacapital"/>
-  <meta name="twitter:title" content="Ainertia Capital — Automatización con IA para tu negocio"/>
-  <meta name="twitter:description" content="Menos tareas repetitivas. Más tiempo para lo que importa. Soluciones de IA para empresas en España."/>
+  <meta name="twitter:title" content="Consultoría IA y Automatización para Empresas | Ainertia Capital"/>
+  <meta name="twitter:description" content="Automatizamos las tareas repetitivas de tu negocio con inteligencia artificial. Sin permanencia. Instalación en 24-48h."/>
   <meta name="twitter:image" content="https://ainertiacapital.com/og-image.png"/>
   <!-- JSON-LD Structured Data -->
   <script type="application/ld+json">
   {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "Ainertia Capital S.L.",
-      "url": "https://ainertiacapital.com",
-      "logo": "https://ainertiacapital.com/og-image.png",
-      "description": "Consultora de automatización con inteligencia artificial para empresas en España.",
-      "email": "comercial@ainertia.ai",
-      "foundingDate": "2024",
-      "areaServed": {"@type": "Country", "name": "Spain"},
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Córdoba",
-        "addressRegion": "Andalucía",
-        "addressCountry": "ES"
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": ["Organization", "LocalBusiness"],
+        "@id": "https://ainertiacapital.com/#organization",
+        "name": "Ainertia Capital S.L.",
+        "legalName": "Ainertia Capital S.L.",
+        "taxID": "B75739656",
+        "url": "https://ainertiacapital.com",
+        "logo": "https://ainertiacapital.com/og-image.png",
+        "image": "https://ainertiacapital.com/og-image.png",
+        "description": "Consultora de inteligencia artificial y automatización de procesos para pymes y empresas en España. Agentes IA para WhatsApp, gestión documental y control horario.",
+        "email": "comercial@ainertia.ai",
+        "telephone": "+34613244738",
+        "foundingDate": "2024",
+        "priceRange": "€€",
+        "areaServed": {"@type": "Country", "name": "Spain"},
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Plaza Puerta del Rincón, 1",
+          "addressLocality": "Córdoba",
+          "postalCode": "14001",
+          "addressRegion": "Andalucía",
+          "addressCountry": "ES"
+        },
+        "sameAs": [
+          "https://ainertia.ai",
+          "https://www.linkedin.com/company/ainertia-capital",
+          "https://pacopro.com",
+          "https://ainertiacronos.com"
+        ],
+        "knowsAbout": ["Inteligencia Artificial", "Automatización de procesos", "RPA", "Agentes conversacionales", "Verifactu", "Control horario"],
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Soluciones IA para Empresas",
+          "itemListElement": [
+            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Agente IA para WhatsApp", "description": "Automatización de atención al cliente y gestión de citas vía WhatsApp Business con inteligencia artificial"}},
+            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Automatización de procesos RPA", "description": "Eliminación de tareas repetitivas en gestorías, clínicas y despachos mediante automatización robótica de procesos"}},
+            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Software de gestión documental", "description": "PACO Pro: gestión de presupuestos, facturas y Verifactu con IA para pymes y autónomos"}},
+            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Control horario legal", "description": "Ainertia Cronos: software de registro de jornada laboral conforme al RD-Ley 8/2019"}}
+          ]
+        }
       },
-      "sameAs": ["https://ainertia.ai"]
-    }
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "¿Qué hace Ainertia Capital?",
+            "acceptedAnswer": {"@type": "Answer", "text": "Ainertia Capital es una consultora de inteligencia artificial y automatización de procesos para pymes y empresas españolas. Desarrollamos agentes IA para WhatsApp, software de gestión documental con Verifactu (PACO Pro) y soluciones de control horario (Ainertia Cronos)."}
+          },
+          {
+            "@type": "Question",
+            "name": "¿Cuánto cuesta implementar un agente IA para mi negocio?",
+            "acceptedAnswer": {"@type": "Answer", "text": "El coste depende del caso de uso. Un agente de atención al cliente en WhatsApp tiene un coste de implementación de entre 500 y 2.000 euros con una cuota mensual de 100-300 euros. La mayoría de nuestros clientes recuperan la inversión en menos de 3 meses gracias al ahorro en horas de gestión."}
+          },
+          {
+            "@type": "Question",
+            "name": "¿Con qué sectores trabaja Ainertia Capital?",
+            "acceptedAnswer": {"@type": "Answer", "text": "Trabajamos con clínicas dentales, gestorías y asesorías, hostelería, clínicas de estética, despachos de abogados y clínicas veterinarias. También con cualquier empresa que tenga procesos repetitivos susceptibles de automatización."}
+          },
+          {
+            "@type": "Question",
+            "name": "¿Cuánto tarda la instalación?",
+            "acceptedAnswer": {"@type": "Answer", "text": "La mayoría de nuestras soluciones están operativas en 24-48 horas desde la contratación. No requieren integración compleja con tus sistemas existentes y funcionan vía WhatsApp Business, que ya tienes en tu móvil."}
+          },
+          {
+            "@type": "Question",
+            "name": "¿Hay permanencia?",
+            "acceptedAnswer": {"@type": "Answer", "text": "No. Todas nuestras soluciones son sin permanencia. Puedes cancelar en cualquier momento sin penalización. Nuestra apuesta es mantenerte por resultados, no por contrato."}
+          }
+        ]
+      }
+    ]
+  }
   </script>
   <link rel="sitemap" type="application/xml" href="/sitemap.xml"/>
   <meta name="geo.region" content="ES-CO"/>
@@ -101,10 +176,11 @@
   <a href="mailto:comercial@ainertia.ai" class="nav-email">comercial@ainertia.ai</a>
 </nav>
 
+<!-- H1 visible con keyword principal -->
 <section class="hero">
-  <div class="hero-eyebrow">✦ Automatización con IA · Córdoba, España</div>
-  <h1>Más tiempo para lo que<br/><em>de verdad</em> importa.</h1>
-  <p>Automatizamos las tareas repetitivas de tu negocio con inteligencia artificial. Elige tu sector y descubre cómo podemos ayudarte.</p>
+  <div class="hero-eyebrow">✦ Consultoría IA · Automatización · Córdoba, España</div>
+  <h1>Inteligencia artificial para empresas<br/>que quieren <em>crecer sin contratar más</em>.</h1>
+  <p>Automatizamos las tareas repetitivas de tu negocio con agentes de inteligencia artificial. Elige tu sector y descubre cómo podemos ayudarte.</p>
   <div class="hero-trust">
     <div class="trust-item">✅ <strong>Sin permanencia</strong></div>
     <div class="trust-dot"></div>
@@ -165,13 +241,46 @@
   </div>
 </div>
 
+<!-- FAQ Section para SEO + LLMs -->
+<section class="faq-section">
+  <div class="faq-inner">
+    <h2 class="faq-title">Preguntas frecuentes</h2>
+    <p class="faq-subtitle">Todo lo que necesitas saber antes de empezar.</p>
+
+    <div class="faq-item">
+      <p class="faq-q">¿Qué hace exactamente Ainertia Capital?</p>
+      <p class="faq-a">Somos una consultora de inteligencia artificial especializada en automatización de procesos para pymes españolas. Desarrollamos agentes IA que gestionan citas, envían recordatorios, procesan documentos y atienden clientes por WhatsApp, sin que tú tengas que hacer nada.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">¿Cuánto cuesta implementar un agente IA?</p>
+      <p class="faq-a">Depende del caso de uso. Un agente de gestión de citas para clínica tiene un coste de implementación de 500-1.500€ con cuota mensual desde 100€. La mayoría de clientes recuperan la inversión en menos de 3 meses gracias al ahorro en horas de gestión y ausencias reducidas.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">¿Cuánto tarda en estar operativo?</p>
+      <p class="faq-a">Entre 24 y 48 horas desde la contratación. Nuestras soluciones funcionan con WhatsApp Business, que ya tienes en tu negocio. No necesitan instalaciones complejas ni integración con tus sistemas actuales.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">¿Hay permanencia o contrato mínimo?</p>
+      <p class="faq-a">No. Todas nuestras soluciones son sin permanencia. Puedes cancelar cuando quieras sin penalización. Nos quedamos porque generamos valor, no porque te hayamos atado con un contrato.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">¿Tenéis otros productos además del agente de WhatsApp?</p>
+      <p class="faq-a">Sí. También desarrollamos PACO Pro (software de gestión documental con IA y Verifactu para pymes y autónomos) y Ainertia Cronos (control horario legal conforme al RD-Ley 8/2019). Puedes conocerlos en pacopro.com y ainertiacronos.com.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Bottom -->
+<section class="cta-bottom">
+  <h2>¿Listo para automatizar tu negocio?</h2>
+  <p>Primera consulta sin coste. Te contamos qué podemos automatizar en tu empresa en 30 minutos.</p>
+  <a href="mailto:comercial@ainertia.ai" class="cta-btn">Hablar con el equipo →</a>
+</section>
+
 <footer>
   <div class="footer-inner">
-    <p>© 2026 <a href="https://ainertia.ai">Ainertia Capital S.L.</a> · Córdoba, España · <a href="mailto:comercial@ainertia.ai">comercial@ainertia.ai</a></p>
+    <p>© 2026 <a href="https://ainertia.ai">Ainertia Capital S.L.</a> · CIF B75739656 · Plaza Puerta del Rincón, 1 · Córdoba, España · <a href="tel:+34613244738">613 244 738</a> · <a href="mailto:comercial@ainertia.ai">comercial@ainertia.ai</a></p>
   </div>
 </footer>
 </body>
 </html>
-<!-- Tue Feb 24 10:42:09 CET 2026 -->
-<!-- Tue Feb 24 13:42:14 CET 2026 -->
-<!-- rebuild Tue Feb 24 16:43:59 CET 2026 -->
